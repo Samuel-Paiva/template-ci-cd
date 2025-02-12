@@ -1,4 +1,6 @@
-"%s-nlb", var.cluster_name)
+# Crie um Network Load Balancer
+resource "aws_lb" "this" {
+  name = format("%s-nlb", var.cluster_name)
 
   subnets            = var.subnets_id
   security_groups    = [aws_security_group.allow_inbound.id]
@@ -8,6 +10,7 @@
     Name = format("%s-nlb", var.cluster_name)
   }
 }
+
 
 # Crie um listener para o NLB
 resource "aws_lb_listener" "this" {
